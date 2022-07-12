@@ -117,7 +117,7 @@ unstableMakeIsData ''UnbondedStakingDatum
      that needs to be checked by the validator.
 -}
 data UnbondedStakingAction
-  = AdminAct Natural Natural
+  = AdminAct
   | StakeAct Natural PubKeyHash (Maybe MintingAction)
   | WithdrawAct PubKeyHash BurningAction
   | CloseAct

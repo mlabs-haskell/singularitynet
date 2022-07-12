@@ -175,7 +175,7 @@ instance Show UnbondedStakingDatum where
   show = genericShow
 
 data UnbondedStakingAction
-  = AdminAct { totalRewards :: Natural, totalDeposited :: Natural }
+  = AdminAct
   | StakeAct
       { stakeAmount :: Natural
       , stakeHolder :: PaymentPubKeyHash
@@ -189,13 +189,7 @@ data UnbondedStakingAction
 
 instance
   HasPlutusSchema UnbondedStakingAction
-    ( "AdminAct"
-        :=
-          ( "totalRewards" := I Natural
-              :+ "totalDeposited"
-              := I Natural
-              :+ PNil
-          )
+    ( "AdminAct" := PNil
         @@ Z
         :+ "StakeAct"
         :=
@@ -211,7 +205,7 @@ instance
         :=
           ( "stakeHolder" := I PaymentPubKeyHash
               :+ "burningAction"
-              := I (BurningAction)
+              := I BurningAction
               :+ PNil
           )
         @@ (S (S Z))

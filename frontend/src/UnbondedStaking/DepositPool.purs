@@ -48,7 +48,6 @@ import Data.BigInt as BigInt
 import Plutus.Conversion (fromPlutusAddress)
 import Scripts.PoolValidator (mkUnbondedPoolValidator)
 import Settings (unbondedStakingTokenName)
-import Types.Natural (fromBigInt')
 import Types.Redeemer (Redeemer(Redeemer))
 import Types.Scripts (ValidatorHash)
 import UnbondedStaking.Types
@@ -291,10 +290,7 @@ mkEntryUpdateList
               , totalDeposited = updatedTotalDeposited
               }
           }
-        valRedeemer = Redeemer $ toData $ AdminAct
-          { totalRewards: fromBigInt' $ updatedTotalRewards
-          , totalDeposited: fromBigInt' $ updatedTotalDeposited
-          }
+        valRedeemer = Redeemer $ toData AdminAct
         -- Build asset datum and value types
         assetDatum = Datum $ toData AssetDatum
         assetParams = unwrap unbondedAssetClass

@@ -296,6 +296,7 @@ instance ToData MintingAction where
 data BurningAction
   = BurnHead TransactionInput TransactionInput
   | BurnOther TransactionInput TransactionInput
+  | BurnSingle TransactionInput
 
 derive instance Generic BurningAction _
 derive instance Eq BurningAction
@@ -309,6 +310,9 @@ instance
         :+ "BurnOther"
         := PNil
         @@ (S Z)
+        :+ "BurnSingle"
+        := PNil
+        @@ (S (S Z))
         :+ PNil
     )
 
